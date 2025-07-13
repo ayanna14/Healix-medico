@@ -23,8 +23,6 @@ workout_df = pd.read_csv("datasets/workout_df.csv")
 workout_df["Disease_clean"] = workout_df["Disease"].str.strip().str.lower()
 description_df = pd.read_csv("datasets/disease_descriptions.csv")
 medications_df = pd.read_csv("datasets/medication_cleaned.csv")
-diets_df = pd.read_csv("datasets/diet_cleaned.csv")
-diets_df["Disease_clean"] = diets_df["Disease"].str.strip().str.lower()
 
 diseases_list = {15: 'Fungal infection', 4: 'Allergy', 16: 'GERD', 9: 'Chronic cholestasis', 14: 'Drug Reaction', 33: 'Peptic ulcer diseae', 1: 'AIDS', 12: 'Diabetes ', 17: 'Gastroenteritis', 6: 'Bronchial Asthma', 23: 'Hypertension ', 30: 'Migraine', 7: 'Cervical spondylosis', 32: 'Paralysis (brain hemorrhage)', 28: 'Jaundice', 29: 'Malaria', 8: 'Chicken pox', 11: 'Dengue', 37: 'Typhoid', 40: 'hepatitis A', 19: 'Hepatitis B', 20: 'Hepatitis C', 21: 'Hepatitis D', 22: 'Hepatitis E', 3: 'Alcoholic hepatitis', 36: 'Tuberculosis', 10: 'Common Cold', 34: 'Pneumonia', 13: 'Dimorphic hemmorhoids(piles)', 18: 'Heart attack', 39: 'Varicose veins', 26: 'Hypothyroidism', 24: 'Hyperthyroidism', 25: 'Hypoglycemia', 31: 'Osteoarthristis', 5: 'Arthritis', 0: '(vertigo) Paroymsal  Positional Vertigo', 2: 'Acne', 38: 'Urinary tract infection', 35: 'Psoriasis', 27: 'Impetigo'}
 
@@ -86,17 +84,6 @@ def show_medications(disease):
     medications = row.drop(columns=["Disease", "Disease_clean"]).dropna(axis=1).values.flatten().tolist() if not row.empty else []
 
     return render_template("medications.html", disease=disease, medications=medications)
-
-@app.route("/diet/<disease>")
-def make_diet(disease):
-    disease_clean = disease.strip().lower()
-    row = diets_df[diets_df["Disease_clean"] == disease_clean]
-    diet = row.drop(columns=["Disease", "Disease_clean"], errors="ignore").values.flatten().tolist()
-    # Filter out empty and repeated disease name entries
-    diet = [d for d in diet if d.strip().lower() != disease_clean and d.strip() != '']
-    return render_template("diet.html", disease=disease, diet_plans=diet)
-
-
 
 @app.route("/workout/<disease>")
 def show_workout(disease):
