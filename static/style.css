@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("/static/images/3.png");
+    background-size: cover;        /* Optional: Makes image cover entire area */
+    background-position: center;
+}
+.wrapper {
+    position: relative;
+    width: 1000px;
+    height: 700px;
+    background: linear-gradient(to bottom, #eee2f7, #f0ecf4);
+    border-radius: 50px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, .3);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.wrapper img {
+    position: absolute;
+    right: -40px;
+    width: 60%;
+}
+.form-wrapper {
+    z-index: 2;
+}
+.wrapper .form-wrapper.login {
+    transition: .7s ease-in-out;
+    transition-delay: .7s;
+}
+.wrapper.active .form-wrapper.login {
+    transition-delay: 0s;
+    transform: translateX(-400px);
+}
+h2 {
+    font-size: 2em;
+    text-align: center;
+    color: #df8fdf;
+}
+.input-box {
+    position: relative;
+    width: 320px;
+    margin: 30px 0;
+}
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #f2f2f2;
+    outline: none;
+    border-radius: 40px;
+    font-size: 1em;
+    color: #DDA0DD;
+    padding: 0 20px 0 40px;
+}
+.input-box input::placeholder {
+    color: rgb(10, 10, 35);
+}
+.input-box .icon {
+    position: absolute;
+    left: 15px;
+    color: #f2f2f2;
+    font-size: 1.2em;
+    line-height: 55px;
+}
+button {
+    width: 100%;
+    height: 45px;
+    background: #cf86cf;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #702c70;
+    font-weight: 500;
+}
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+/* Style for dropdowns inside .input-box */
+.input-box select {
+    width: 100%;
+    height: 50px;
+    background-color: linear-gradient(to bottom, rgb(207, 134, 207), rgba(10,10,35,0));
+    border: 2px solid #f2f2f2;
+    border-radius: 40px;
+    color: #d646d6;
+    padding: 0 20px 0 40px;
+    font-size: 1em;
+    appearance: none; /* remove native dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    outline: none;
+    /*background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23f2f2f2" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');*/
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 16px;
+}
+
+/* For white placeholder-like appearance in selects */
+.input-box select option:first-child {
+    background: transparent;
+}
+.sign-link {
+    font-size: .9em;
+    text-align: center;
+    margin: 25px 0;
+}
+.sign-link p {
+    color: #f2f2f2;
+}
+.sign-link p a {
+    color: #c66dc6;
+    text-decoration: none;
+    font-weight: 600;
+}
+.sign-link p a:hover {
+    text-decoration: underline;
+}
+
+/* Result Container / Cards */
+.result-container {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 3rem auto;
+    animation: fadeInUp 0.5s ease;
+    text-align: center;
+}
+
+.disease-name {
+    font-size: 2rem;
+    color: rgb(10,10,35,1);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.result-container p {
+    font-size: 1.1rem;
+    color: #e1d2e1;
+    margin-bottom: 2rem;
+}
+
+.result-container a {
+    color: #5a189a;
+    word-break: break-word;
+    text-decoration: none;
+}
+
+.result-container a:hover {
+    color: #9d4edd;
+    text-decoration: underline;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn-link {
+    background-color: #662d91;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-link:hover {
+    background-color: #454565;
+    transform: scale(1.05);
+}
+
+
+/* Grid Layout (Optional for Multi-column Data) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.card {
+    background-color: #fff0f5;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+/* Button Enhancements */
+button {
+    margin-bottom: 1rem;
+    background: #662d91;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        margin: 10px 0 0 0;
+    }
+
+    .form-section, .result-container {
+        padding: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
