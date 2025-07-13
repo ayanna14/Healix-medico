@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Suggestions for {{ disease.title() }}</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background-image: url("/static/images/back_purp.png");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #7a1fa2;
+            margin-bottom: 20px;
+        }
+        ul {
+            text-align: left;
+            padding-left: 0;
+        }
+        li {
+            background: #f2e6fa;
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        .buttons a {
+            display: inline-block;
+            margin: 8px;
+            padding: 12px 20px;
+            background-color: #7a1fa2;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wellness & Routine Enhancements for {{ disease.title() }}</h1>
+
+            {% if workouts %}
+                <ul>
+                    {% for w in workouts %}
+                        <li>{{ w }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No workout suggestions available.</p>
+            {% endif %}
+
+        <div class="buttons">
+            <a href="{{ url_for('make_precautions', disease=disease) }}">Do's & Dont's</a>
+            <a href="{{ url_for('make_diet', disease=disease) }}">Eat Right</a>
+            <a href="{{ url_for('show_medications', disease=disease) }}">Relief Remedies</a>
+            <a href="{{ url_for('symptom_form') }}">Begin Fresh</a>
+        </div>
+    </div>
+</body>
+</html>

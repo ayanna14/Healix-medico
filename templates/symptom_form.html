@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symptom Logging - Medicino</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="wrapper">
+    <img src="{{ url_for('static', filename='images/doc.png') }}" alt="">
+    <div class="form-wrapper log">
+        <form action="{{ url_for('predict') }}" method="POST">
+            <h2>Log Symptoms</h2>
+            <div id="symptom-container">
+                {% for i in range(1, 4) %}
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="pulse-outline"></ion-icon></span>
+                    <select name="feature" required>
+                        <option value="" disabled selected>Select symptom {{ i }}</option>
+                        {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom.replace('_', ' ').title() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Add More Symptoms Button -->
+            <div class="sign-link">
+                <p><a href="#" onclick="addSymptom(); return false;">+ Add More Symptoms</a></p>
+            </div>
+
+            <button type="submit">Get Health Insights</button>
+        </form>
+    </div>
+
+</div>
+
+<!-- Ionicons & JavaScript -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+let symptomCount = 6;
+
+function addSymptom() {
+    const container = document.getElementById("symptom-container");
+
+    const div = document.createElement("div");
+    div.className = "input-box";
+
+    div.innerHTML = `
+    <span class="icon"><ion-icon name="pulse-outline"></ion-icon></span>
+    <select name="feature" required>
+        <option value="" disabled selected>Select symptom ${symptomCount}</option>
+        {% for symptom in symptoms %}
+        <option value="{{ symptom }}">{{ symptom.replace('_', ' ').title() }}</option>
+        {% endfor %}
+    </select>
+`;
+
+
+
+    container.appendChild(div);
+    symptomCount++;
+}
+</script>
+</body>
+</html>

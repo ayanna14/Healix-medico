@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medicino - AI-Powered Disease Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logos.png') }}" alt="Medicino Logo" />
+        <span>Healix</span>
+      </div>
+      <nav>
+        <a href="#why-us">Features</a>
+        <a href="{{ url_for('symptom_form') }}">Log Symptoms</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Worried about your symptoms?</h1>
+        <p>Quickly find out what might be causing them. Just enter your symptoms and get accurate health predictions in seconds.
+            Designed to guide you—not replace your doctor.</p>
+        <a href="{{ url_for('symptom_form') }}" class="btn-primary">Start Diagnosis</a>
+      </div>
+      <div class="hero-img">
+        <img src="{{ url_for('static', filename='images/home_char.png') }}" alt="Doctor AI Illustration" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="why-us">
+    <div class="container">
+      <div class="left">
+        <img src="static/images/doc-fem.png" alt="Character" class="character" />
+      </div>
+      <div class="right">
+          <h2>Why Us?</h2>
+          <div class="cards">
+              <a href="{{ url_for('symptom_form') }}" class="card">
+                <img src="static/images/writing.png" alt="Symptom Log" />
+                <span> Log your “uh-oh” symptoms in a snap</span>
+                <button>➜</button>
+              </a>
+              <a href="{{ url_for('predict') }}" class="card">
+                <img src="static/images/pred_icon.png" alt="Predict" />
+                <span> Get spot-on predictions (no guessing games)</span>
+                <button>➜</button>
+              </a>
+              <a href="{{ url_for('make_precautions',disease=disease) }}" class="card">
+                <img src="static/images/prec_icon.png" alt="prevention" />
+                <span> Precaution tips to keep drama low</span>
+                <button>➜</button>
+              </a>
+              <a href="{{ url_for('show_workout',disease=disease) }}" class="card">
+                <img src="static/images/workout_icon.png" alt="Project Icon" />
+                <span> Lifestyle tips you’ll actually want to try</span>
+                <button>➜</button>
+              </a>
+              <a href="#about" class="card">
+                <img src="static/images/diet.png" alt="Internship Icon" />
+                <span> Health insights that actually make sense</span>
+                <button>➜</button>
+              </a>
+          </div>
+
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class ="heading"><span>About</span>Medicino</h2>
+      <p>We’re dedicated to making health information more accessible, fast, and reliable for everyone.
+          Our platform allows users to enter their symptoms and instantly receive accurate predictions of possible conditions.
+          Designed with simplicity and privacy in mind, our tool empowers users to make informed decisions about their health—anytime, anywhere.
+          While we don’t replace a doctor’s advice, we aim to be your first step toward better understanding your health. Whether you're unsure about a minor symptom or just want peace of mind, we’re here to help.</p>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-content">
+      <p>Contact us at <a href="mailto:support@medicino.ai">support@medicino.ai</a></p>
+      <p>🖤 Built with Flask</p>
+    </div>
+  </footer>
+<script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, {
+        threshold: 0.2 // Trigger when 20% of the element is visible
+      });
+
+      const character = document.querySelector('.character');
+      if (character) observer.observe(character);
+</script>
+</body>
+
+</html>

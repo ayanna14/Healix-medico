@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("/static/images/2.png");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .disease-name {
+            color: #b6367b;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 12px;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        h2 {
+            color: #85acf1;
+            margin-bottom: 20px;
+        }
+
+
+        .links a {
+            text-decoration: none;
+            color: #6a1b9a;
+            margin: 0 10px;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .links a:hover {
+            color: #ad1457;
+        }
+
+        .nav {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+
+        .nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .nav img {
+            height: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px 8px;
+            padding: 10px 18px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, #FBD3E9 0%, #BB377D  51%, #FBD3E9  100%);
+
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, transform 0.2s ease;
+          }
+
+          .btn:hover {
+            background: linear-gradient(to right, #ddd6f3 0%, #faaca8  51%, #ddd6f3  100%);
+            transform: translateY(-2px);
+          }
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/"><img src="{{ url_for('static', filename='images/logos.png') }}" alt="Logo">Health Predictor</a>
+        <a href="/">Home</a>
+        <a href="/log">Start Again</a>
+    </div>
+
+    <div class="card">
+        <h2>Predicted Disease</h2>
+        <h3 class="disease-name">{{ disease }}</h3>
+
+        <h4><strong>Description:</strong></h4>
+        <p>{{ description }}</p>
+
+        <div class="button-container"">
+            <a href="{{ url_for('make_precautions', disease=disease) }}" class="btn">Do's & Dont's</a>
+            <a href="{{ url_for('show_medications', disease=disease) }}" class="btn">Relief Remedies</a>
+            <a href="{{ url_for('make_diet', disease=disease) }}" class="btn">Eat Right</a>
+            <a href="{{ url_for('show_workout', disease=disease) }}" class="btn">Move to Heal</a>
+        </div>
+
+    </div>
+</body>
+</html>

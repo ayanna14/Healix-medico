@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Precautions for {{ disease }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("/static/images/4.png");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 90%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #050007;
+        }
+        h1 {
+            text-align: center;
+            color: #6a1b9a;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, #6a1b9a, #8e24aa);
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #8e24aa, #6a1b9a);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>How to Shield Yourself from </h2>
+        <h1>{{ disease }}</h1>
+
+        <ul>
+            {% for tip in tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+        <div class="button-container">
+            <a href="/log" class="btn">← Back to Diagnosis</a>
+            <a href="/diet/{{ disease }}" class="btn">Eat Right</a>
+            <a href="/medications/{{ disease }}" class="btn">Relief Remedies</a>
+            <a href="/workout/{{ disease }}" class="btn">Move to Heal</a>
+        </div>
+    </div>
+
+</body>
+</html>

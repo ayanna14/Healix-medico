@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medications for {{ disease }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("/static/images/5.png");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #6a1b9a;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f3e5f5;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, #6a1b9a, #8e24aa);
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #6a1b9a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Healing Medications for {{ disease }}</h2>
+        {% if medications %}
+            <ul>
+                {% for med in medications %}
+                    <li>{{ med }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No medication suggestions available.</p>
+        {% endif %}
+
+
+        <div class="buttons">
+            <a href="/precautions/{{ disease }}"><button>Do's & Dont's</button></a>
+            <a href="/diet/{{ disease }}"><button>Eat Right</button></a>
+            <a href="/workout/{{ disease }}"><button>Move to Heal</button></a>
+            <a href="/log"><button>Begin Fresh</button></a>
+        </div>
+    </div>
+</body>
+</html>

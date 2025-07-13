@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diet Plan for {{ disease }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #e0f7fa, #f3e5f5);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            margin: 0;
+        }
+
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #6a1b9a;
+            margin-bottom: 25px;
+        }
+
+        ul {
+            text-align: left;
+            list-style-type: disc;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        li {
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, #6a1b9a, #8e24aa);
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #8e24aa, #6a1b9a);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>What to Eat When Dealing with {{ disease }}</h2>
+            {% if diet %}
+                <ul>
+                    {% for item in diet %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                <p>No diet suggestions available.</p>
+            {% endif %}
+
+        <div class="button-container">
+            <a href="/precautions/{{ disease }}" class="btn">Precautions</a>
+            <a href="/medications/{{ disease }}" class="btn">Medications</a>
+            <a href="/workout/{{ disease }}" class="btn">Workout</a>
+            <a href="/log" class="btn">← Start Again</a>
+        </div>
+    </div>
+
+</body>
+</html>
