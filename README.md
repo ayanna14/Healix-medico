@@ -34,10 +34,6 @@ A smart health assistant built using **Flask**, **Machine Learning**, and **Pand
 
 ---
 
-## Install the dependencies
-
-pip install -r requirements.txt
----
 ## Run the App
 
 python app.py
